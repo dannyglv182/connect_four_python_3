@@ -15,3 +15,11 @@ def test_board_range_2():
     """
     assert get_move(0,0) == False
 
+
+def test_input_values():
+    """ any non-numeric value should raise a value error.
+    """
+    with pytest.raises(ValueError, match='Values must be numeric.'):
+        get_move('a','b')
+
+

@@ -108,11 +108,16 @@ def remove_from_win_lists(move, player):
 
 
 def get_move(row, col):
-    """ Gets move from player_1 as a string and returns it as a an array in
+    """ Takes a row and col value for player_1 and returns it as a an array in
         the form [row, col]
     """
-    row = int(row)
-    col = int(col)
+
+    # Check that row and col are numeric values
+    try:
+        row = int(row)
+        col = int(col)
+    except:
+        raise ValueError("Values must be numeric.")
 
     # Outside of upper bound
     if row > 4 or col > 4:
