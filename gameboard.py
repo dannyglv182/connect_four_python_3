@@ -163,7 +163,8 @@ def run_game():
     while game_is_over == False:
 
 
-        # Get player_1 move
+        # Obtain player_1 move from the console as a string and pass row and col
+        # to the get_move function
         player_1_move = input("\nWhat move would you like to play? FORMAT: 1,1\n")
         move = get_move(player_1_move[0], player_1_move[2])
 
