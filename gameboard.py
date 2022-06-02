@@ -63,7 +63,7 @@ def player_move(move, player):
         # match
         move_index = -1
         for item in board:
-            move_index +=1
+            move_index += 1
             if item == move:
                 break
 
@@ -77,7 +77,7 @@ def player_move(move, player):
         # remove played move from legal list
         list_pos = -1
         for i in legal:
-            list_pos +=1
+            list_pos += 1
             if i == move:
                 legal.pop(list_pos)
         return True
