@@ -1,5 +1,6 @@
 """ Connect four game between a player and the cpu. Moves are played as tuples
     representing slots
+    Author: Daniel Galvez
 """
 
 import random
@@ -50,7 +51,7 @@ def player_move(move, player):
         legal_spot: the newly legal position based on move_index
 
         Args:
-            move: the slot ([x,x]) the player decides to play
+            move: the slot [row,col] the player decides to play
             player: 'player_1' for player, 'cpu' for computer
 
     """
@@ -58,9 +59,9 @@ def player_move(move, player):
         print ("sorry try again, move not allowed")
         return False
     else:
-        # move_index is set to the move that was played
-        # the users slot is compared to each item in the board untill there is a
-        # match
+        # the [row, col] slot is compared to each item in the board until
+        # there is a match
+        # The move index is set to the move that was played
         move_index = -1
         for item in board:
             move_index += 1
@@ -188,7 +189,7 @@ def run_game():
         cpu_moves_played.append(cpu_move)
 
         # because moves are popped from the wins list, a win occurs when a list
-        # in the wins or computer wins list becomes empty
+        # in the wins or computer_wins list becomes empty
         for key in wins:
             if wins[key] == []:
                 print ("You won!")
