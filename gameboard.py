@@ -139,7 +139,8 @@ def generate_cpu_move():
 
 
 def return_game_board():
-    """ returns a gameboard for testing purposes
+    """ Creates a visual of the gameboard using a list of lists.
+        Each list represents a row on the gameboard.
     """
     visual = [[[1, 1], [1, 2], [1, 3], [1, 4]],
              [[2, 1], [2, 2], [2, 3], [2, 4]],
