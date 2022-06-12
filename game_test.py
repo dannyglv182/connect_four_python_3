@@ -1,3 +1,7 @@
+""" game_test.py: This module defines tests with sample inputs to ensure
+    functionality.
+"""
+
 import pytest
 from gameboard import get_move
 
