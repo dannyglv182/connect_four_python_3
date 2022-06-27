@@ -48,9 +48,9 @@ def player_move(move, player):
 
 
 def remove_from_win_lists(move, player):
-    """ The game is over when any of the lists in the wins or computer_wins
-        dictionaries are empty. Every time a move is played, that move is
-        popped from the lists where it is present.
+    """ The game is over when any of the lists of possible wins in the wins or 
+        computer_wins dictionaries are empty. Every time a move is played, that
+        move is popped from the lists where it is present.
 
         Args:
             move: the slot (list_item) played by the user
@@ -155,7 +155,7 @@ def run_game():
         remove_from_win_lists(cpu_move, "cpu")
         cpu_moves_played.append(cpu_move)
 
-        # because moves are popped from the wins list, a win occurs when a list
+        # Moves are popped from the wins list, a win occurs when a list
         # in the wins or computer_wins list becomes empty
         for key in wins:
             if wins[key] == []:
