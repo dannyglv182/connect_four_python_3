@@ -161,6 +161,13 @@ def run_game():
         # Check for a win/loss/draw
         # Moves are popped from the wins list. A win occurs when a list
         # in the wins or computer_wins list becomes empty
+
+        if legal == []:
+            print ("Draw")
+            game_is_over = True
+            break
+
+
         for key in wins:
             if wins[key] == []:
                 print ("You won!")
