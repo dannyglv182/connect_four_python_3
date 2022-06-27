@@ -140,7 +140,7 @@ def run_game():
         # Player move
         # Obtain the move from the command line as a string and pass row and col
         # to the get_move function
-        player_1_move = input("\nWhat move would you like to play? FORMAT: 1,1\n")
+        player_1_move = input("\nWhat move would you like to play? FORMAT: ROW,COL\n")
         move = get_move(player_1_move[0], player_1_move[2])
 
         if player_move(move, "player_1"):
