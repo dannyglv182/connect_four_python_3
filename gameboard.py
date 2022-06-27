@@ -137,7 +137,8 @@ def run_game():
     while game_is_over == False:
 
 
-        # Obtain player_1 move from the console as a string and pass row and col
+        # Player move
+        # Obtain the move from the command line as a string and pass row and col
         # to the get_move function
         player_1_move = input("\nWhat move would you like to play? FORMAT: 1,1\n")
         move = get_move(player_1_move[0], player_1_move[2])
@@ -148,12 +149,14 @@ def run_game():
         else:
             pass
 
+
         # cpu move
         cpu_move = generate_cpu_move()
         print ("cpu plays" + str(cpu_move))
         player_move(cpu_move, "cpu")
         remove_from_win_lists(cpu_move, "cpu")
         cpu_moves_played.append(cpu_move)
+
 
         # Moves are popped from the wins list, a win occurs when a list
         # in the wins or computer_wins list becomes empty
