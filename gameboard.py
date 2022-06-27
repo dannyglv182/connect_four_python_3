@@ -158,7 +158,8 @@ def run_game():
         cpu_moves_played.append(cpu_move)
 
 
-        # Moves are popped from the wins list, a win occurs when a list
+        # Check for a win/loss/draw
+        # Moves are popped from the wins list. A win occurs when a list
         # in the wins or computer_wins list becomes empty
         for key in wins:
             if wins[key] == []:
