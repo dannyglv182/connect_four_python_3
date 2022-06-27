@@ -38,7 +38,7 @@ def player_move(move, player):
             if board[legal_spot] not in legal:
                 legal.append(board[legal_spot])
 
-        # remove played move from legal list
+        # remove played move from legal list so it can't be played twice.
         list_pos = -1
         for i in legal:
             list_pos += 1
