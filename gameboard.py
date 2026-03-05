@@ -130,7 +130,7 @@ def return_game_board():
 
 
 def run_game():
-    """ Runs the game
+    """ Calling this function runs the game
     """
     game_is_over = False
     return_game_board()
