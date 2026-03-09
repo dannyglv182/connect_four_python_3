@@ -7,7 +7,7 @@ import random
 from game_logic.lists import *
 
 
-def player_move(move, player):
+def player_move(row, col, player):
     """ If move is illegal, move is rejected. If move is legal, move is played
         and the slot above the move becomes legal
         move_index: the list position of the player move
@@ -18,6 +18,7 @@ def player_move(move, player):
             player: 'player_1' for player, 'cpu' for computer
 
     """
+    move = [row, col]
     if move not in legal:
         print ("sorry try again, move not allowed")
         return False
