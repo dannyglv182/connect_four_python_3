@@ -45,6 +45,7 @@ def player_move(row, col, player):
             list_pos += 1
             if i == move:
                 legal.pop(list_pos)
+        
         return True
 
 
@@ -105,7 +106,7 @@ def generate_cpu_move():
 
 def return_game_board():
     """ Creates a visual of the gameboard using a list of lists.
-        Each list represents a row on the gameboard.
+        Each list represents a row on the gameboard. 
     """
     visual = [[[1, 1], [1, 2], [1, 3], [1, 4]],
              [[2, 1], [2, 2], [2, 3], [2, 4]],
@@ -123,66 +124,59 @@ def return_game_board():
             elif i in cpu_moves_played:
                 row[list_pos] = " o  "
 
+    return visual
     # Prints the board to the shell
-    print (visual[3])
-    print (visual[2])
-    print (visual[1])
-    print (visual[0])
+    # print (visual[3])
+    # print (visual[2])
+    # print (visual[1])
+    # print (visual[0])
 
 
-def run_game():
-    """ Calling this function runs the game
+def run_game(row, col):
+    """ Calling this function runs the game for exactly one turn and returns
+        the gameboard state back to the server
     """
     game_is_over = False
-    return_game_board()
-    while game_is_over == False:
+
+    # Player move
+    move = get_move(row, col)
+    if player_move(move[0], move[1], "player_1"):
+        remove_from_win_lists(move, "player_1")
+        moves_played.append(move)
+    else:
+        return False
 
 
-        # Player move
-        # Obtain the move from the command line as a string and pass row and col
-        # to the get_move function
-        player_1_move = input("\nWhat move would you like to play? FORMAT: ROW,COL\n")
-        move = get_move(player_1_move[0], player_1_move[2])
-
-        if player_move(move, "player_1"):
-            remove_from_win_lists(move, "player_1")
-            moves_played.append(move)
-        else:
-            pass
+    # CPU move
+    cpu_move = generate_cpu_move()
+    print ("cpu plays" + str(cpu_move))
+    player_move(cpu_move[0], cpu_move[1], "cpu")
+    remove_from_win_lists(cpu_move, "cpu")
+    cpu_moves_played.append(cpu_move)
 
 
-        # cpu move
-        cpu_move = generate_cpu_move()
-        print ("cpu plays" + str(cpu_move))
-        player_move(cpu_move, "cpu")
-        remove_from_win_lists(cpu_move, "cpu")
-        cpu_moves_played.append(cpu_move)
-
-
-        # Check for a win/loss/draw
-        # Moves are popped from the wins list. A win occurs when a list
-        # in the wins or computer_wins list becomes empty
-
-        if legal == []:
-            print ("Draw")
+    # Check for a win/loss/draw
+    # Moves are popped from the wins list. A win occurs when a list
+    # in the wins or computer_wins list becomes empty
+    if legal == []:
+        print ("Draw")
+        game_is_over = True
+    
+        
+    for key in wins:
+        if wins[key] == []:
+            print ("You won!")
             game_is_over = True
-            break
+            
 
 
-        for key in wins:
-            if wins[key] == []:
-                print ("You won!")
-                game_is_over = True
-                break
+    for key in computer_wins:
+        if computer_wins[key] == []:
+            print ("Sorry you lost.")
+            game_is_over = True
 
-
-        for key in computer_wins:
-            if computer_wins[key] == []:
-                print ("Sorry you lost.")
-                game_is_over = True
-                break
-
-        return_game_board()
+    game_state = return_game_board()
+    return game_state
 
 if __name__ == "__main__":
     run_game()

@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-from game_logic.gameboard import player_move
+from game_logic.gameboard import player_move, run_game
 
 app = FastAPI()
 
@@ -17,8 +17,9 @@ async def root():
 def move_request(move: Move):
     row = move.row
     column = move.column
-    result = player_move(row, column, "player_1")
-    return {
-        "row": row,
-        "column": column
-    }
+    result = run_game(row, column)
+    # return {
+    #     "row": row,
+    #    "column": column
+    # }
+    return result # Should return the state of the game 
