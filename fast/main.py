@@ -17,9 +17,9 @@ async def root():
 def move_request(move: Move):
     row = move.row
     column = move.column
-    result = run_game(row, column)
+    board = run_game(row, column)
     # return {
     #     "row": row,
     #    "column": column
     # }
-    return result # Should return the state of the game 
+    return {"board": board} # Should return the state of the game 

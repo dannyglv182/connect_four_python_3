@@ -5,6 +5,20 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const [board, boardState] = useState(0)
+
+  async function makeMove(row, column) {
+    const res = await fetch ("http://localhost:8000/move", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({row: row, column: column})
+    });
+    const data = await res.json();
+    boardState(data.board);
+}
+  
 
   return (
     <>
