@@ -113,7 +113,19 @@ def return_game_board():
              [[3, 1], [3, 2], [3, 3], [3, 4]],
              [[4, 1], [4, 2], [4, 3], [4, 4]]]
 
-    
+    visual2 = [[1, 1], [1, 2], [1, 3], [1, 4],
+         [2, 1], [2, 2], [2, 3], [2, 4],
+         [3, 1], [3, 2], [3, 3], [3, 4],
+         [4, 1], [4, 2], [4, 3], [4, 4]]
+
+    list_position = -1
+    for i in visual2:
+        list_position += 1
+        if i in moves_played:
+            visual2[list_position] = "x"
+        elif i in cpu_moves_played:
+            visual2[list_position] = "O"
+
     # Sets the player's moves as x and the cpu's moves as o
     for row in visual:
         list_pos = -1
@@ -124,7 +136,7 @@ def return_game_board():
             elif i in cpu_moves_played:
                 row[list_pos] = " o  "
 
-    return visual
+    return visual2
     # Prints the board to the shell
     # print (visual[3])
     # print (visual[2])

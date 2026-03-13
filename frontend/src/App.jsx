@@ -5,7 +5,10 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
-  const [board, boardState] = useState(0)
+  const [board, boardState] = useState([[1, 1], [1, 2], [1, 3], [1, 4],
+         [2, 1], [2, 2], [2, 3], [2, 4],
+         [3, 1], [3, 2], [3, 3], [3, 4],
+         [4, 1], [4, 2], [4, 3], [4, 4]])
 
   async function makeMove(row, column) {
     const res = await fetch ("http://localhost:8000/move", {
@@ -16,6 +19,7 @@ function App() {
       body: JSON.stringify({row: row, column: column})
     });
     const data = await res.json();
+    console.log(data.board);
     boardState(data.board);
 }
   
@@ -35,6 +39,22 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
+
+        <button onClick={() => makeMove(1,1)}>
+          call the backend.
+        </button>
+        
+        <div>
+          <h1>game board</h1>
+          {board.map(([row, col], index) => (
+          <button
+          key={index}
+          onClick={() => makeMove(row, col)}
+          >
+          {row},{col}
+          </button>
+          ))}
+        </div>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>
@@ -42,6 +62,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
+
     </>
   )
 }
