@@ -5,6 +5,7 @@ import './App.css'
 
 function App() {
   const [count, setCount] = useState(0)
+  const numCols = 4;
   const [board, boardState] = useState([[1, 1], [1, 2], [1, 3], [1, 4],
          [2, 1], [2, 2], [2, 3], [2, 4],
          [3, 1], [3, 2], [3, 3], [3, 4],
@@ -47,12 +48,17 @@ function App() {
         <div>
           <h1>game board</h1>
           {board.map(([row, col], index) => (
+          <span>
           <button
           key={index}
           onClick={() => makeMove(row, col)}
           >
           {row},{col}
           </button>
+
+          {(index + 1) % 4 === 0 && <br />}
+          </span>
+          
           ))}
         </div>
         <p>
