@@ -137,11 +137,6 @@ def return_game_board():
                 row[list_pos] = " o  "
 
     return visual2
-    # Prints the board to the shell
-    # print (visual[3])
-    # print (visual[2])
-    # print (visual[1])
-    # print (visual[0])
 
 
 def run_game(row, col):

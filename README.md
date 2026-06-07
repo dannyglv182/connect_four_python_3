@@ -8,8 +8,8 @@ testing is done with the Pytest framework.
 
 
 ## How to run
-1. uncomment the run_game function in gameboard.py
-2. run gameboard.py
+1. start Fastapi server ```fastapi dev```
+2. start React server ``` npm run dev ```
 
 ## Dependencies
 - **Pytest**
