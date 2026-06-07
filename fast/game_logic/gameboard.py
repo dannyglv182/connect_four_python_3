@@ -151,12 +151,11 @@ def run_game(row, col):
         remove_from_win_lists(move, "player_1")
         moves_played.append(move)
     else:
-        return False
+        pass
 
 
     # CPU move
     cpu_move = generate_cpu_move()
-    print ("cpu plays" + str(cpu_move))
     player_move(cpu_move[0], cpu_move[1], "cpu")
     remove_from_win_lists(cpu_move, "cpu")
     cpu_moves_played.append(cpu_move)
