@@ -8,8 +8,8 @@ testing is done with the Pytest framework.
 
 
 ## How to run
-1. start Fastapi server ```fastapi dev```
-2. start React server ``` npm run dev ```
+1. Start Fastapi server ```fastapi dev```
+2. Start React server ``` npm run dev ```
 
 ## Dependencies
 - **Pytest**
