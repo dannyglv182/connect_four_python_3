@@ -6,10 +6,10 @@ import './App.css'
 function App() {
   const [count, setCount] = useState(0)
   const numCols = 4;
-  const [board, boardState] = useState([[1, 1], [1, 2], [1, 3], [1, 4],
-         [2, 1], [2, 2], [2, 3], [2, 4],
+  const [board, boardState] = useState([[4, 1], [4, 2], [4, 3], [4, 4],
          [3, 1], [3, 2], [3, 3], [3, 4],
-         [4, 1], [4, 2], [4, 3], [4, 4]])
+         [2, 1], [2, 2], [2, 3], [2, 4],
+         [1, 1], [1, 2], [1, 3], [1, 4]])
 
   async function makeMove(row, column) {
     const res = await fetch ("http://localhost:8000/move", {
@@ -37,14 +37,14 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
+        {/*
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-
         <button onClick={() => makeMove(1,1)}>
           call the backend.
         </button>
-        
+        */}
         <div>
           <h1>game board</h1>
           {board.map(([row, col], index) => (
