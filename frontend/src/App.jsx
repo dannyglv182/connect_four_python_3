@@ -46,7 +46,7 @@ function App() {
         </button>
         */}
         <div>
-          <h1>game board</h1>
+          <h1>game board - You are x </h1>
           {board.map(([row, col], index) => (
           <span>
           <button
