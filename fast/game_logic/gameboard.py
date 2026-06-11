@@ -136,7 +136,7 @@ def run_game(row, col):
     game_is_over = False
 
     # Check for a win/loss/draw
-    # Moves are popped from the wins list. A win occurs when a list
+    # Moves are popped from the lists of possible wins. A win occurs when a list
     # in the wins or computer_wins dictionary becomes empty
     if legal == []:
         print ("Draw")
