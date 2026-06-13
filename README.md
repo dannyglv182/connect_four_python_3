@@ -24,8 +24,8 @@ This was one of my first coding projects.
 At the time, I was looking for a way to turn basic loops and data structures into a functional program. I ended up using Python dictionaries to store lists of possible wins throughout the grid which might have been a little more than necessary, but made it a valuable learning experience. It was originally a terminal based game and ended with either stating win, lose or draw. Eventually, I decided to add React, FastAPI, and Docker for the learning experience. Now the backend returns an array with X's and O's representing moves that the front end displays
 
 ## How to run
-1. Start Fastapi server ```fastapi dev```
-2. Start React server ``` npm run dev ```
+1. visit http://localhost/5173 after running```docker compose up --build```
+
 
 ## Dependencies
 - **Pytest**
