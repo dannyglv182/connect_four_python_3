@@ -4,10 +4,10 @@
 """
 
 import random
-from lists import *
+from game_logic.lists import *
 
 
-def player_move(move, player):
+def player_move(row, col, player):
     """ If move is illegal, move is rejected. If move is legal, move is played
         and the slot above the move becomes legal
         move_index: the list position of the player move
@@ -18,6 +18,7 @@ def player_move(move, player):
             player: 'player_1' for player, 'cpu' for computer
 
     """
+    move = [row, col]
     if move not in legal:
         print ("sorry try again, move not allowed")
         return False
@@ -44,6 +45,7 @@ def player_move(move, player):
             list_pos += 1
             if i == move:
                 legal.pop(list_pos)
+        
         return True
 
 
@@ -104,82 +106,72 @@ def generate_cpu_move():
 
 def return_game_board():
     """ Creates a visual of the gameboard using a list of lists.
-        Each list represents a row on the gameboard.
+        Each list represents a row on the gameboard. 
     """
-    visual = [[[1, 1], [1, 2], [1, 3], [1, 4]],
-             [[2, 1], [2, 2], [2, 3], [2, 4]],
-             [[3, 1], [3, 2], [3, 3], [3, 4]],
-             [[4, 1], [4, 2], [4, 3], [4, 4]]]
 
-    
+    visual2 = [[4, 1], [4, 2], [4, 3], [4, 4],
+         [3, 1], [3, 2], [3, 3], [3, 4],
+         [2, 1], [2, 2], [2, 3], [2, 4],
+         [1, 1], [1, 2], [1, 3], [1, 4]]
+
+
     # Sets the player's moves as x and the cpu's moves as o
-    for row in visual:
-        list_pos = -1
-        for i in row:
-            list_pos +=1
-            if i in moves_played:
-                row[list_pos] = " x  "
-            elif i in cpu_moves_played:
-                row[list_pos] = " o  "
+    # by traversing the list of lists and checking if the move
+    # has been played.
+    list_position = -1
+    for i in visual2:
+        list_position += 1
+        if i in moves_played:
+            visual2[list_position] = "X"
+        elif i in cpu_moves_played:
+            visual2[list_position] = "O"
 
-    # Prints the board to the shell
-    print (visual[3])
-    print (visual[2])
-    print (visual[1])
-    print (visual[0])
+    return visual2
 
 
-def run_game():
-    """ Runs the game
+def run_game(row, col):
+    """ Calling this function runs the game for exactly one turn and returns
+        the state of the gameboard so that it can be sent back to the server
     """
     game_is_over = False
-    return_game_board()
-    while game_is_over == False:
+
+    # Check for a win/loss/draw
+    # Moves are popped from the lists of possible wins. A win occurs when a list
+    # in the wins or computer_wins dictionary becomes empty
+    if legal == []:
+        print ("Draw")
+        game_is_over = True
+    
+        
+    for key in wins:
+        if wins[key] == []:
+            print ("You won!")
+            game_is_over = True
+            
 
 
+    for key in computer_wins:
+        if computer_wins[key] == []:
+            print ("Sorry you lost.")
+            game_is_over = True
+
+    if game_is_over != True:
         # Player move
-        # Obtain the move from the command line as a string and pass row and col
-        # to the get_move function
-        player_1_move = input("\nWhat move would you like to play? FORMAT: ROW,COL\n")
-        move = get_move(player_1_move[0], player_1_move[2])
-
-        if player_move(move, "player_1"):
+        move = get_move(row, col)
+        if player_move(move[0], move[1], "player_1"):
             remove_from_win_lists(move, "player_1")
             moves_played.append(move)
         else:
             pass
 
 
-        # cpu move
+        # CPU move
         cpu_move = generate_cpu_move()
-        print ("cpu plays" + str(cpu_move))
-        player_move(cpu_move, "cpu")
+        player_move(cpu_move[0], cpu_move[1], "cpu")
         remove_from_win_lists(cpu_move, "cpu")
         cpu_moves_played.append(cpu_move)
 
+    return return_game_board()
 
-        # Check for a win/loss/draw
-        # Moves are popped from the wins list. A win occurs when a list
-        # in the wins or computer_wins list becomes empty
-
-        if legal == []:
-            print ("Draw")
-            game_is_over = True
-            break
-
-
-        for key in wins:
-            if wins[key] == []:
-                print ("You won!")
-                game_is_over = True
-                break
-
-
-        for key in computer_wins:
-            if computer_wins[key] == []:
-                print ("Sorry you lost.")
-                game_is_over = True
-                break
-
-        return_game_board()
-run_game()
+if __name__ == "__main__":
+    run_game()
